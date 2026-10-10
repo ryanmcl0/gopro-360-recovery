@@ -1,0 +1,21 @@
+# card images and footage never belong in the repo
+*.img
+*.dmg
+*.map
+*.360
+*.LRV
+*.lrv
+*.MP4
+*.mp4
+*.mov
+*.MOV
+recovered/
+*.npz
+*.png
+!docs/*.png
+
+__pycache__/
+*.pyc
+.DS_Store
+._*
+.venv/
