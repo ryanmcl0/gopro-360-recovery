@@ -92,6 +92,19 @@ A `.360` comes back as the camera's own dual-track file. Open it in **GoPro Play
 or **GoPro Quik**, which stitch it using the clip's own calibration and telemetry, or
 export it to equirectangular from there.
 
+**Converting it yourself (ffmpeg etc.)?** `vstack` the two video tracks and use
+`v360=eac:e` and you'll get a visible seam down the sides. Each lens track is a YouTube-EAC
+row (front lens: left | front | right; back lens: down | back | up, rotated), but GoPro
+widens each side face to store the strip where the lenses overlap **twice**. In 3K mode
+(2272×736 per lens) a side face is 352 px | 32 px from one lens | the same 32 px from the
+other lens | 352 px, 32 px wider than ffmpeg expects. In 5.6K mode (4096×1344) the
+widely-used recipe treats it as 624 | 64 | 64 | 624, with each 64 px copy covering 96 px of
+angle. Merge the two copies into one before projecting. A seam cut where they differ
+least avoids ghosting on things close to the lens. The GPMF `CORI` stream (camera
+orientation, one quaternion `w,x,y,z` per frame) is in the image axes (x right, y down,
+z out of the front lens) with `d_cam = R(q)·d_world`, and `GRAV` gives "down", which
+is enough to level and stabilise the footage.
+
 ### Prove it on your own card first
 
 If the same card also holds recordings you still have good copies of, rebuild one of
