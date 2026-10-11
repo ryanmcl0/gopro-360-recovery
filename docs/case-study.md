@@ -1,6 +1,6 @@
 # Case study: a GoPro MAX `.360` lost to a formatted card
 
-A 28-second GoPro MAX recording (a rooftop at sunset) was on a 16 GB microSD card that
+A 28-second GoPro MAX recording was on a 16 GB microSD card that
 was accidentally formatted. Nothing was written to the card afterwards. About four
 years later it was imaged and recovered.
 
